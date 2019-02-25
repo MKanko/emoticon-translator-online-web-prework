@@ -3,16 +3,30 @@ require 'pry'
 
 def load_library(file_path)
   library = YAML.load_file(file_path)
-  new_hash = {}
-  new_array = ["get_emoticon", "get_meaning"]
-  new_hash << new_array
-binding.pry 
-  new_hash["get_emoticon"] = {}
-  new_hash["get_meaning"] = {}
- 
+  emo_data = {}
+    
+#binding.pry  
+  library.each do |meaning_key, emo_value|
+    emo_value.each do |emo|
+      
+      emo_data[:get_meaning] = {emo_value[1] => meaning_key} 
+      emo_data[:get_emoticon] = {emo_value[0] => emo_value[1]}
+
+#binding.pry
+    end
+  end
+  emo_data 
+end
+
+# New hash needs to look like => {get_meaning: {japanese_emoticon => meaning}, get_emoticon: {english_emoticon => japanese_emoticon}}
+
+
+#  new_hash = Hash.new
+#  new_hash << ['get_emoticon' => {}, 'get_meaning' => {}]
+#binding.pry 
+
   
-  
-  
+# ['get_emoticon' => {}, 'get_meaning' => {}]
   
 #  new_hash = Hash.new []  
 #  keys = ["get_emoticon", "get_meaning"]
@@ -24,7 +38,7 @@ binding.pry
 #  new_hash << ["get_emoticon", "get_meaning"]
 #binding.pry  
 #  end  
-end
+
 
 def get_japanese_emoticon
   # code goes here
