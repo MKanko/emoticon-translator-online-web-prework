@@ -45,23 +45,42 @@ end
 
 def get_japanese_emoticon(file_path, emoticon)
   library = load_library(file_path)
-  library["get_emoticon"].each do |eemo_key, jemo_value|
-    if emoticon == eemo_key
-      jemo_value
+  return_value = library["get_emoticon"][emoticon]
 #binding.pry
-    elsif emoticon != eemo_key
-      puts "Sorry, that emoticon was not found"
-  
-    end
-  end
+  return_value ? return_value : "Sorry, that emoticon was not found"
 end
+
+# Big take away from the method above - directly below is an 
+# iteration and conditional logic used in my first attempt
+# the problem was forgetting that the return value of .each
+# is the original hash un-modified, which is what it was doing
+# causing errors in the return value
+# I could have found a different method, and I tried .collect, 
+# but that was returning a collection of the apology statements
+# when the emoticon passed in was not found in the emo_keys.
+# Rather than finding the right method to "iterate", the question
+# became why iterate at all, when you can use the sq bracket logic
+# on line 48 above. Important to the use of the sq. bracket logic
+# is understanding exactly how to use.
+# sq brackets are like a search box where you are saying 
+# find whats in the sq brackets and return it's value.
+  
+  
+# library["get_emoticon"].each do |eemo_key, jemo_value| 
+#   if emoticon == eemo_key
+#      return jemo_value
+#    else 
+#      "Sorry, that emoticon was not found"
+#    end
+#  end
+
 
 def get_english_meaning
   # code goes here
 end
 
 
-
+ 
 
 
 
