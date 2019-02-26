@@ -62,8 +62,12 @@ end
 # became why iterate at all, when you can use the sq bracket logic
 # on line 48 above. Important to the use of the sq. bracket logic
 # is understanding exactly how to use.
-# sq brackets are like a search box where you are saying 
-# find whats in the sq brackets and return it's value.
+### sq brackets are like a search box where you are saying 
+### find whats in the sq brackets and return it's value.
+
+# So the use of the sq. bracket logic in this case was the perfect
+# set up to finally use the ultra cool ternary operator on line 50
+# above.
   
   
 # library["get_emoticon"].each do |eemo_key, jemo_value| 
@@ -75,8 +79,10 @@ end
 #  end
 
 
-def get_english_meaning
-  # code goes here
+def get_english_meaning(file_path, emoticon)
+  library = load_library(file_path)
+  return_value = library["get_meaning"][emoticon]
+  return_value ? return_value : "Sorry, that emoticon was not found"
 end
 
 
