@@ -29,9 +29,6 @@ end
 # to be added to the hash on each iteration. The difference is very
 # important and must understand the difference in syntax and logic! 
 
-
-
-
 #{"angel"=>["O:)", "☜(⌒▽⌒)☞"],
 #"angry"=>[">:(", "ヽ(ｏ`皿′ｏ)ﾉ"],
 #"bored"=>[":O", "(ΘεΘ;)"],
@@ -46,14 +43,36 @@ end
 #"surprised"=>[":o", "o_O"],
 #"wink"=>[";)", "(^_-)"]}
 
-
-
-
-
-def get_japanese_emoticon
-  # code goes here
+def get_japanese_emoticon(file_path, emoticon)
+  library = load_library(file_path)
+  library["get_emoticon"].each do |eemo_key, jemo_value|
+    if emoticon == eemo_key
+      jemo_value
+#binding.pry
+    elsif emoticon != eemo_key
+      puts "Sorry, that emoticon was not found"
+  
+    end
+  end
 end
 
 def get_english_meaning
   # code goes here
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
