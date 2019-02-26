@@ -6,35 +6,30 @@ def load_library(file_path)
   emo_data = {}
   emo_data["get_meaning"] = {}
   emo_data["get_emoticon"] = {}
-    
-#binding.pry  
   library.each do |meaning_key, emo_value|
-#  binding.pry
-    
+    emo_data["get_meaning"][emo_value[1]] = meaning_key 
+    emo_data["get_emoticon"][emo_value[0]] = emo_value[1]
       
-      emo_data["get_meaning"][emo_value[1]] = meaning_key 
-      emo_data["get_emoticon"][emo_value[0]] = emo_value[1]
-      
-      emo_data["get_meaning"] = {emo_value[1] => meaning_key}
-#binding.pry
-    
+#      emo_data["get_meaning"] = {emo_value[1] => meaning_key}
+#      emo_data["get_emoticon"] = {emo_value[0] => emo_value[1]}
   end
-#  binding.pry
   emo_data 
 end
 
-# New hash needs to look like => {get_meaning: {japanese_emoticon => meaning}, get_emoticon: {english_emoticon => japanese_emoticon}}
+# New hash needs to look like => {get_meaning: {japanese_emoticon => meaning}, 
+# get_emoticon: {english_emoticon => japanese_emoticon}}
 
-#load_library
-# accepts one argument, the file path
-# return value
-#   returns a hash
-#   has two keys, 'get_meaning' and 'get_emoticon' (FAILED - 1)
-#   the keys 'get_meaning' and 'get_emoticon' point to inner hashes (FAILED - 2)
-#   the keys inside the 'get_meaning' hash are the Japanese emoticons (FAILED -3)
-#   the emoticon keys inside the 'get_meaning' hash point to their meanings (FAILED - 4)
-#   the keys inside the 'get_emoticon' hash are the English emoticons (FAILED -5)
-#   the emoticon keys inside the 'get_emoticon' hash point to their Japanese equivalents (FAILED - 6)
+# Big take away from the method above - lines 13-14 were my first
+# attempt and they sucessfully populate the new hash with the 
+# required key value pairs on the first iteration. But because
+# of how the code is written - assigning (=) the populated value
+# hash to emo_data["get_meaning"], That assignment will be over written
+# on the next iteration and evry time through after that.
+# The code on lines 10-11 is revised to allow for the key values 
+# to be added to the hash on each iteration. The difference is very
+# important and must understand the difference in syntax and logic! 
+
+
 
 
 #{"angel"=>["O:)", "☜(⌒▽⌒)☞"],
@@ -52,23 +47,7 @@ end
 #"wink"=>[";)", "(^_-)"]}
 
 
-#  new_hash = Hash.new
-#  new_hash << ['get_emoticon' => {}, 'get_meaning' => {}]
-#binding.pry 
 
-  
-# ['get_emoticon' => {}, 'get_meaning' => {}]
-  
-#  new_hash = Hash.new []  
-#  keys = ["get_emoticon", "get_meaning"]
-#  keys.each do |key|
-#    new_hash[key.length] += [key]  
-  
-#  new_array = ["get_emoticon", "get_meaning"]
-
-#  new_hash << ["get_emoticon", "get_meaning"]
-#binding.pry  
-#  end  
 
 
 def get_japanese_emoticon
